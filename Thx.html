@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Planet Berputar</title>
+  <style>
+    /* ====== GLOBAL ====== */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #050b2e, #000);
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ====== SISTEM TATA SURYA ====== */
+    .solar-system {
+      position: relative;
+      width: 400px;
+      height: 400px;
+    }
+
+    /* ====== MATAHARI ====== */
+    .sun {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, #ffd700, #ff8c00);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 40px #ffb700;
+    }
+
+    /* ====== ORBIT ====== */
+    .orbit {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 260px;
+      height: 260px;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* ====== PLANET ====== */
+    .planet {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle at 30% 30%, #6cf, #036);
+      border-radius: 50%;
+      transform-origin: -100px center;
+    }
+  </style>
+</head>
+<body>
+  <div class="solar-system">
+    <div class="sun"></div>
+    <div class="orbit">
+      <div class="planet" id="planet"></div>
+    </div>
+  </div>
+
+  <script>
+    const planet = document.getElementById("planet");
+    let angle = 0;
+    const speed = 0.02;
+
+    function animate() {
+      angle += speed;
+      planet.style.transform = `
+        rotate(${angle}rad)
+        translateX(100px)
+        rotate(${angle * 2}rad)
+      `;
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
